@@ -78,7 +78,7 @@ li a:hover {
   right: 0;
   font-weight: bold;
   color: blue;
-  font-size: 18px;
+  font-size: 28px;
 }
 
 .dashboard{
@@ -90,6 +90,7 @@ li a:hover {
 .title-container{
   border-bottom: 2px solid white;
   color: white;
+  padding-top: 5px;
 }
 
 .section {
