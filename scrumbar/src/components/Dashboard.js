@@ -12,10 +12,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     getTask( data => {
-      const datas = Object.entries(data.val()).map(([key, value]) => {
-        return {...value, key};
-      });
-      this.setState({tasks: datas});
+      this.setState({tasks: data});
     });
   }
 

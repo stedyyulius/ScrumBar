@@ -16,10 +16,7 @@ class Developers extends Component {
       this.setState({users: data});
     });
     getTask( data => {
-      const datas = Object.entries(data.val()).map(([key, value]) => {
-        return {...value, key};
-      });
-      this.setState({tasks: datas});
+      this.setState({tasks: data});
     });
   }
 

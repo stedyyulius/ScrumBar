@@ -3,7 +3,11 @@ import { ref } from '../config/firebase';
 const bidRef = ref.child('bids');
 
 export const getBid = (callback) => {
-  bidRef.on('value', callback);
+  bidRef.on('value', data => {
+    return callback(Object.entries(data.val()).map(([key, value]) => {
+      return {...value, key};
+    }))
+  })
 };
 
 export const addBid = newBid => {
