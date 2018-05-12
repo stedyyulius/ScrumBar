@@ -1,6 +1,7 @@
 import React , { Component } from 'react'
 
 import Navbar from '../components/Navbar'
+import Developers from '../components/Developers'
 
 class Home extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Home extends Component {
     return (
       <div>
         <Navbar />
+        <Developers />
       </div>
     )
   }
