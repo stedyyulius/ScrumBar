@@ -1,3 +1,8 @@
+body {
+  background-image: url('https://i.ytimg.com/vi/waokXwuiHXU/maxresdefault.jpg');
+  background-size: cover;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -32,7 +37,6 @@ li a:hover {
 
 .developer {
   margin: 10px;
-  border: 1px solid gray;
 }
 
 .img-circle {
