@@ -31,7 +31,7 @@ class Developers extends Component {
 
       this.state.users.forEach(user => {
         for (let i = 0; i < this.state.tasks.length; i++) {
-          if (typeof this.state.tasks[i].userAssigned !== 'undefined' && this.state.tasks[i].userAssigned.includes(user.key) && this.state.tasks[i].status !== 'done' && this.state.tasks[i].status !== 'Waiting QA') {
+          if (typeof this.state.tasks[i].userAssigned !== 'undefined' && this.state.tasks[i].status === 'In Progress'  && this.state.tasks[i].userAssigned.includes(user.key)) {
             workingUsers.push(user.key)
           }
         }
