@@ -128,6 +128,7 @@ class Bid extends Component {
   assignTaskTo = (data) => {
     let task = this.state.lastBid.task
     task.userAssigned = data.user.key
+    task.usernameAssigned = data.user.username
     task.poin = data.poin
     editTask(task.key, task)
     this.setState({
