@@ -64,6 +64,7 @@ li a:hover {
 
 .in-progress-task, h4{
   text-align: center;
+  background-color: white;
 }
 
 .owner {
@@ -95,4 +96,16 @@ li a:hover {
   width: 25%;
   border: 2px solid white;
   height: 100vh;
+}
+
+.section-body {
+  padding-top: 20px;
+}
+
+.card {
+  width: 250px;
+  height: 100px;
+  background-color: white;
+  margin: auto;
+  text-align: center;
 }

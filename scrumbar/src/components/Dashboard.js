@@ -11,16 +11,38 @@ class Dashboard extends Component {
 
   componentDidMount() {
     getTask( data => {
-      this.setState({tasks: data.val()});
-    });
-  }
+      const datas = Object.entries(data.val()).map(([key, value]) => {
+        return {...value, key};
+      });
+      this.setState({tasks: datas});
+  });
 
-  tasksList(section) {
-    if (this.state.tasks.length > 0) {
-      return this.state.tasks.filter(task => task.status === section)
-    }
-    return (<p>Loading ...</p>)
+
+
+}
+
+tasksList(section) {
+  if (this.state.tasks.length > 0) {
+    // console.log(this.state.tasks[0].status)
+
+    const filteredTask = [];
+
+    this.state.tasks.forEach(task => {
+      if (task.status === section) {
+        filteredTask.push(
+          <div className="card" key={task.key}>
+            <p className="owner"></p>
+            <h4>{task.title}</h4>
+            <p>{task.desc}</p>
+            <span className="point">{task.point || 0}</span>
+          </div>
+        )
+      };
+    });
+    return filteredTask;
   }
+  return (<p>Loading ...</p>)
+}
 
   render() {
     return (
@@ -29,7 +51,9 @@ class Dashboard extends Component {
           <div className="title-container">
             <h4>Backlog</h4>
           </div>
-          {this.tasksList('Backlog')}
+          <div className="section-body">
+            {this.tasksList('Backlog')}
+          </div>
         </div>
         <div className="section">
           <div className="title-container">
