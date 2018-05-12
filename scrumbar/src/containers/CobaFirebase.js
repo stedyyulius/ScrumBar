@@ -3,11 +3,6 @@ import { getTask, addTask } from '../helpers/task';
 
 
 class CobaFirebase extends React.Component {
-  componentDidMount() {
-    console.log("did mount")
-
-    console.log("get task =  ", getTask());
-  }
 
   handleAdd = () => {
     const newTask = {
