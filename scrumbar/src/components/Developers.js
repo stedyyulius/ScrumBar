@@ -7,8 +7,8 @@ class Developers extends Component {
   }
   render() {
     return (
-      <div class="developers-bar">
-        <div class="developer">
+      <div className="developers-bar">
+        <div className="developer">
           <img
           className="img-circle"
           style={{border: '5px solid green'}}
