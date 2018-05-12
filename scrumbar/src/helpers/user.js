@@ -3,7 +3,11 @@ import { ref } from '../config/firebase';
 const userRef = ref.child('users');
 
 export const getUser = (callback) => {
-  userRef.on('value', callback);
+  userRef.on('value', data => {
+    return callback(Object.entries(data.val()).map(([key, value]) => {
+      return {...value, key};
+    }))
+  });
 };
 
 export const addUser = newUser => {
