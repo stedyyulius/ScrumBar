@@ -5,6 +5,7 @@ import { DragDropContext } from 'react-dnd';
 import Navbar from '../components/Navbar'
 import Developers from '../components/Developers'
 import Dashboard from '../components/Dashboard'
+import Bid from '../components/Bid'
 
 class Home extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Home extends Component {
     return (
       <div>
         <Navbar />
+        <Bid />
         <Developers />
         <Dashboard />
       </div>

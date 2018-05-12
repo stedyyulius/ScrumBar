@@ -19,6 +19,7 @@ export const addBid = newBid => {
 };
 
 export const editBid = (bidId, updatedBid) => {
+  console.log("bidid = ", bidId)
   const bid = {};
   bid[`/${bidId}`] = updatedBid;
   bidRef.update(bid);
