@@ -67,16 +67,18 @@ class Bid extends Component {
     this.setState({
       lastBid: pastBid
     }, () => {
-      let smallest = pastBid.bids.reduce((prev, curr) => {
-        return Math.min(prev, curr.poin)
-      }, 10000)
-      let smallests = pastBid.bids.filter((bid) => {
+      if (pastBid.bids){
+        let smallest = pastBid.bids.reduce((prev, curr) => {
+          return Math.min(prev, curr.poin)
+        }, 10000)
+        let smallests = pastBid.bids.filter((bid) => {
           return bid.poin == smallest
-      })
-      this.setState({
-        smallests: smallests,
-        bid: {}
-      })
+        })
+        this.setState({
+          smallests: smallests,
+          bid: {}
+        })
+      }
     })
   }
 
