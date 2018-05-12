@@ -2,10 +2,8 @@ import { ref } from '../config/firebase';
 
 const taskRef = ref.child('tasks');
 
-export const getTask = () => {
-  taskRef.on('value', data => {
-    console.log(data.val());
-  });
+export const getTask = (callback) => {
+  taskRef.on('value', callback);
 };
 
 export const addTask = newTask => {

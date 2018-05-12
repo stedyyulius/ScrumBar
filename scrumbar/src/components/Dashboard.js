@@ -1,9 +1,26 @@
 import React, { Component } from 'react'
+import { getTask, addTask, editTask } from '../helpers/task';
 
 class Dashboard extends Component {
   constructor(props) {
     super(props)
-    this.state={}
+    this.state={
+      tasks: []
+    }
+  }
+
+  componentDidMount() {
+    getTask( data => {
+      console.log(data.val());
+      this.setState({tasks: data.val()});
+    });
+  }
+
+  tasksList(section) {
+    if (this.state.tasks.length > 0) {
+      return this.state.tasks.filter(task => task.status === section)
+    }
+    return (<p>Loading ...</p>)
   }
 
   render() {
@@ -13,6 +30,7 @@ class Dashboard extends Component {
           <div className="title-container">
             <h4>Backlog</h4>
           </div>
+          {this.tasksList('Backlog')}
         </div>
         <div className="section">
           <div className="title-container">

@@ -42,8 +42,8 @@ li a:hover {
 
 .img-circle {
   border-radius: 100px;
-  width: 50px;
-  height: 50px;
+  width: 90px;
+  height: 90px;
   margin: 10px;
 }
 
@@ -51,8 +51,8 @@ li a:hover {
   position: relative;
   width: 200px;
   background-color: white;
-  top: -65px;
-  left: 66px;
+  top: 65px;
+  left: -50px;
 }
 
 .in-progress-task {

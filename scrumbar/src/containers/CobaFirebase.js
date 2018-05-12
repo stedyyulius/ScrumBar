@@ -4,7 +4,7 @@ import { getTask, addTask, editTask } from '../helpers/task';
 
 class CobaFirebase extends React.Component {
   componentDidMount() {
-    getTask();
+    // getTask();
   }
 
   handleAdd = () => {
