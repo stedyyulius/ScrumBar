@@ -30,6 +30,7 @@ class Developers extends Component {
             className="img-circle"
             style={{border: '5px solid green'}}
             src="https://vignette.wikia.nocookie.net/surrealmemes/images/b/bd/Orang.jpg/revision/latest?cb=20180430202601"
+            alt=""
             />
           </div>
         </div>
@@ -40,6 +41,7 @@ class Developers extends Component {
               className="img-circle"
               style={{border: '5px solid red'}}
               src="https://vignette.wikia.nocookie.net/surrealmemes/images/b/bd/Orang.jpg/revision/latest?cb=20180430202601"
+              alt=""
               />
             </div>
             <div className="in-progress">
