@@ -83,9 +83,12 @@ class Bid extends Component {
   activeBid () {
     if (this.state.bid && Object.keys(this.state.bid).length > 0) {
       return (
-        <div>
+        <div className="bids">
           <p>{this.state.bid.task.title}</p>
-          <span><input type="text" className="form-control" onChange={(e) => this.setState({poin: e.target.value})} /></span>
+          <span>
+            <input type="text" className="form-control bid-input" onChange={(e) => this.setState({poin: e.target.value})} />
+          </span>
+          <br />
           <button onClick={this.userBid}>BID!</button>
         </div>
       )
@@ -141,12 +144,12 @@ class Bid extends Component {
   assignBid () {
     if (this.state.smallests.length > 0) {
       return (
-        <div>
+        <div className="bids">
           {this.state.smallests.map(small => {
             return (
-              <p key={small.user.key} onClick={() => this.assignTaskTo(small)}>
+              <h1 key={small.user.key} onClick={() => this.assignTaskTo(small)}>
                 {`${small.user.username}`}
-              </p>
+              </h1>
             )
           })}
           {this.state.smallests.length > 1 ? (

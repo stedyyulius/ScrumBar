@@ -81,11 +81,10 @@ class Dashboard extends Component {
             <div className="card" key={task.key} onClick={()=> this.selectTask(task.key)}>
               <p className="owner">{new Date(task.created).toString().slice(0,15)}</p>
               <h4>{task.title}</h4>
-              <p>{task.desc}</p>
               <span className="point">
-              {task.point || this.state.user.role === "lead"
+              {task.poin ? task.poin : this.state.user.role === "lead"
                   ? <button className="bid-button" onClick={() => this.startBid(task)}>Start Bid</button>
-                : ""}
+                : task.poin}
               </span>
               <span className="userAssigned">{task.usernameAssigned}</span>
               {this.selectMenu(task)}

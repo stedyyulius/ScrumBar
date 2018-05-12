@@ -43,9 +43,6 @@ class Navbar extends Component {
                 <h6>Name</h6>
                 <input type="text" className="form-control" onChange={(e) => this.setState({title: e.target.value})}/>
                 <br />
-                <h6>Description</h6>
-                <input type="text" className="form-control" onChange={(e) => this.setState({desc: e.target.value})}/>
-                <br />
                 <h6>Type</h6>
                 <select className="form-control" onChange={(e)=>this.setState({type: e.target.value})}>
                   <option>Bug</option>
@@ -54,7 +51,7 @@ class Navbar extends Component {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-primary" onClick={()=> this.createTask()}>Create</button>
+                <button type="button" className="btn btn-primary" onClick={()=> this.createTask()} data-dismiss="modal">Create</button>
               </div>
             </div>
           </div>

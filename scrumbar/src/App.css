@@ -175,3 +175,8 @@ li a:hover {
   -webkit-align-items: center;
   display: column;
 }
+
+.bid-input {
+  width: 20%;
+  margin: auto;
+}
