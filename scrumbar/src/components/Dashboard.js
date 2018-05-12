@@ -11,7 +11,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     getTask( data => {
-      this.setState({tasks: datas});
+      this.setState({tasks: data.val()});
     });
   }
 
