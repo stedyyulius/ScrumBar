@@ -1,10 +1,26 @@
 import React, { Component } from 'react'
+import { getUser } from '../helpers/user'
 
 class Developers extends Component {
   constructor(props) {
     super(props)
-    this.state={}
+    this.state={
+      users: []
+    }
   }
+  componentDidMount() {
+    getUser(data => {
+      this.setState({
+        users: data.val()
+      })
+    })
+  }
+
+  usersList(status) {
+    return this.state.users.filter(user => user.status === status)
+  }
+
+
   render() {
     return (
       <div className="developers-bar">
