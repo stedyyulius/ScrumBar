@@ -4,15 +4,21 @@ import { getTask, addTask, editTask } from '../helpers/task';
 
 class CobaFirebase extends React.Component {
   componentDidMount() {
-    const newTask = {
-      desc: 'ini task'
-    };
     getTask();
+  }
+
+  handleAdd = () => {
+    const newTask = {
+      desc: 'ini task baru lagi lagi lagi'+Date.now()
+    };
     addTask(newTask);
   }
+
   render() {
     return (
-      <div>coba</div>
+      <div>
+        <button onClick={this.handleAdd}>Add</button>
+      </div>
     );
   }
 }
