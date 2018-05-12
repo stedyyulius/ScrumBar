@@ -68,8 +68,8 @@ class Bid extends Component {
       lastBid: pastBid
     }, () => {
       let smallest = pastBid.bids.reduce((prev, curr) => {
-        return Math.min(prev.poin, curr.poin)
-      })
+        return Math.min(prev, curr.poin)
+      }, 10000)
       let smallests = pastBid.bids.filter((bid) => {
           return bid.poin == smallest
       })
