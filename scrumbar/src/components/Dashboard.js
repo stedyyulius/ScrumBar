@@ -70,6 +70,7 @@ tasksList(section) {
           <div className="card" key={task.key} onClick={()=> this.selectTask(task.key)}>
             <p className="owner">{new Date(task.created).toString().slice(0,15)}</p>
             <h4>{task.title}</h4>
+            <span className="type">{task.type}</span>
             <p>{task.desc}</p>
             <span className="point">{task.point || 0}</span>
             {this.selectMenu(task)}
