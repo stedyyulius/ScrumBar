@@ -16,72 +16,71 @@ class Dashboard extends Component {
         return {...value, key};
       });
       this.setState({tasks: datas});
-  });
-}
-
-selectTask(key) {
-  if (this.state.isSelect === key) {
-    this.setState({
-      isSelect: ''
-    })
-  } else {
-    this.setState({
-      isSelect: key
-    })
-  }
-}
-
-edit(task, status) {
-  const newTask = task
-  task.status = status
-  editTask(task.key, newTask)
-}
-
-selectMenu(task) {
-  if (this.state.isSelect === task.key) {
-    return (
-      <div className="select">
-        <div className="select-item" onClick={()=> this.edit(task, 'Backlog')}>
-          <h4>Backlog</h4>
-        </div>
-        <div className="select-item" onClick={()=> this.edit(task, 'In Progress')}>
-          <h4>In Progress</h4>
-        </div>
-        <div className="select-item" onClick={()=> this.edit(task, 'Waiting QA')}>
-          <h4>Waiting for QA</h4>
-        </div>
-        <div className="select-item" onClick={()=> this.edit(task, 'done')}>
-          <h4>Done</h4>
-        </div>
-      </div>
-    )
-  }
-}
-
-tasksList(section) {
-  if (this.state.tasks.length > 0) {
-    // console.log(this.state.tasks[0].status)
-
-    const filteredTask = [];
-
-    this.state.tasks.forEach(task => {
-      if (task.status && task.status.toLowerCase() === section.toLowerCase()) {
-        filteredTask.push(
-          <div className="card" key={task.key} onClick={()=> this.selectTask(task.key)}>
-            <p className="owner">{new Date(task.created).toString().slice(0,15)}</p>
-            <h4>{task.title}</h4>
-            <span className="type">{task.type}</span>
-            <p>{task.desc}</p>
-            <span className="point">{task.point || 0}</span>
-            {this.selectMenu(task)}
-          </div>
-        )
-      }
     });
-    return filteredTask;
   }
-  return (<img className="loading" src="https://www.pedul.com/images/loading.gif" />)
-}
+
+  selectTask(key) {
+    if (this.state.isSelect === key) {
+      this.setState({
+        isSelect: ''
+      })
+    } else {
+      this.setState({
+        isSelect: key
+      })
+    }
+  }
+
+  edit(task, status) {
+    const newTask = task
+    task.status = status
+    editTask(task.key, newTask)
+  }
+
+  selectMenu(task) {
+    if (this.state.isSelect === task.key) {
+      return (
+        <div className="select">
+          <div className="select-item" onClick={()=> this.edit(task, 'Backlog')}>
+            <h4>Backlog</h4>
+          </div>
+          <div className="select-item" onClick={()=> this.edit(task, 'In Progress')}>
+            <h4>In Progress</h4>
+          </div>
+          <div className="select-item" onClick={()=> this.edit(task, 'Waiting QA')}>
+            <h4>Waiting for QA</h4>
+          </div>
+          <div className="select-item" onClick={()=> this.edit(task, 'done')}>
+            <h4>Done</h4>
+          </div>
+        </div>
+      )
+    }
+  }
+
+  tasksList(section) {
+    if (this.state.tasks.length > 0) {
+      // console.log(this.state.tasks[0].status)
+
+      const filteredTask = [];
+
+      this.state.tasks.forEach(task => {
+        if (task.status && task.status.toLowerCase() === section.toLowerCase()) {
+          filteredTask.push(
+            <div className="card" key={task.key} onClick={()=> this.selectTask(task.key)}>
+              <p className="owner">{new Date(task.created).toString().slice(0,15)}</p>
+              <h4>{task.title}</h4>
+              <p>{task.desc}</p>
+              <span className="point">{task.point || 0}</span>
+              {this.selectMenu(task)}
+            </div>
+          )
+        }
+      });
+      return filteredTask;
+    }
+    return (<img className="loading" src="https://www.pedul.com/images/loading.gif" />)
+  }
 
   render() {
     return (

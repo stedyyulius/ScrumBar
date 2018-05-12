@@ -17,5 +17,5 @@ export const addUser = newUser => {
 export const editUser = (userId, updatedUser) => {
   const user = {};
   user[`/${userId}`] = updatedUser;
-  userRef.update(updatedUser);
+  userRef.update(user);
 };
