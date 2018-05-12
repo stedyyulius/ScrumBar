@@ -1,6 +1,7 @@
 body {
-  background-image: url('https://i.ytimg.com/vi/waokXwuiHXU/maxresdefault.jpg');
+  background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/-hnnJox/visualization-of-bright-dots-moving-around-a-dark-background_n1l_mmuu__F0000.png');
   background-size: cover;
+  padding-bottom: 150px;
 }
 
 ul {
@@ -44,4 +45,54 @@ li a:hover {
   width: 50px;
   height: 50px;
   margin: 10px;
+}
+
+.in-progress {
+  position: relative;
+  width: 200px;
+  background-color: white;
+  top: -65px;
+  left: 66px;
+}
+
+.in-progress-task {
+  position: relative;
+  height: 90px;
+  border: 2px solid #efefef;
+  border-left: 15px solid red;
+}
+
+.in-progress-task, h4{
+  text-align: center;
+}
+
+.owner {
+  font-size: 8px;
+  list-style: none;
+}
+
+.point {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-weight: bold;
+  color: blue;
+  font-size: 13px;
+}
+
+.dashboard{
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  display: flex;
+}
+
+.title-container{
+  border-bottom: 2px solid white;
+  color: white;
+}
+
+.section {
+  width: 25%;
+  border: 2px solid white;
+  height: 100vh;
 }
