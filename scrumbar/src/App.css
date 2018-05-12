@@ -64,7 +64,6 @@ li a:hover {
 
 .in-progress-task, h4{
   text-align: center;
-  background-color: white;
 }
 
 .owner {
@@ -108,4 +107,22 @@ li a:hover {
   background-color: white;
   margin: auto;
   text-align: center;
+  border-left: 15px solid red;
+}
+
+.select {
+  position: relative;
+  background-color: white;
+  width: 250px;
+  left: 200px;
+  top: -90px;
+  border: 2px solid #cecacc;
+}
+
+.select-item {
+  border: 2px solid #cecacc;
+}
+
+.select-item :hover{
+  background-color: blue;
 }

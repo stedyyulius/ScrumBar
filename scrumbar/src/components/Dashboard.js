@@ -5,7 +5,8 @@ class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state={
-      tasks: []
+      tasks: [],
+      isSelect: '',
     }
   }
 
@@ -16,9 +17,39 @@ class Dashboard extends Component {
       });
       this.setState({tasks: datas});
   });
+}
 
+selectTask(key) {
+  if (this.state.isSelect === key) {
+    this.setState({
+      isSelect: ''
+    })
+  } else {
+    this.setState({
+      isSelect: key
+    })
+  }
+}
 
-
+selectMenu(key) {
+  if (this.state.isSelect === key) {
+    return (
+      <div className="select">
+        <div className="select-item">
+          <h4>Backlog</h4>
+        </div>
+        <div className="select-item">
+          <h4>In Progress</h4>
+        </div>
+        <div className="select-item">
+          <h4>Waiting for QA</h4>
+        </div>
+        <div className="select-item">
+          <h4>Done</h4>
+        </div>
+      </div>
+    )
+  }
 }
 
 tasksList(section) {
@@ -30,14 +61,15 @@ tasksList(section) {
     this.state.tasks.forEach(task => {
       if (task.status === section) {
         filteredTask.push(
-          <div className="card" key={task.key}>
-            <p className="owner"></p>
+          <div className="card" key={task.key} onClick={()=> this.selectTask(task.key)}>
+            <p className="owner">{new Date(task.created).toString().slice(0,15)}</p>
             <h4>{task.title}</h4>
             <p>{task.desc}</p>
             <span className="point">{task.point || 0}</span>
+            {this.selectMenu(task.key)}
           </div>
         )
-      };
+      }
     });
     return filteredTask;
   }
