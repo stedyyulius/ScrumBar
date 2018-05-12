@@ -150,8 +150,28 @@ li a:hover {
   display: block;
 }
 
+.bids{
+  color: white;
+  font-weight: bold;
+  margin: auto;
+  text-align: center;
+}
+
 .bid-button {
   width: 50px;
   height: 30px;
   font-size: 8px;
+}
+
+.userAssigned{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: blue;
+  font-weight: bold;
+}
+
+.taskColumn {
+  -webkit-align-items: center;
+  display: column;
 }

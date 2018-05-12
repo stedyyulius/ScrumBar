@@ -87,6 +87,7 @@ class Dashboard extends Component {
                   ? <button className="bid-button" onClick={() => this.startBid(task)}>Start Bid</button>
                 : ""}
               </span>
+              <span className="userAssigned">{task.usernameAssigned}</span>
               {this.selectMenu(task)}
             </div>
           )

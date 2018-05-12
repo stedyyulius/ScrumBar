@@ -57,6 +57,7 @@ class Bid extends Component {
       poin: this.state.poin
     }]
     editBid(currBid.key, currBid)
+    alert('Bid Success')
   }
 
   finishBid = () => {
@@ -102,7 +103,7 @@ class Bid extends Component {
   resultBid = () => {
     if (this.state.bid && Object.keys(this.state.bid).length > 0) {
       return (
-        <div>
+        <div className="bids">
           <p>{this.state.bid.task.title}</p>
           {this.state.bid.bids && this.state.bid.bids.map(bid => {
             return (
