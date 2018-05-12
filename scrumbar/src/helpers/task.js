@@ -17,5 +17,5 @@ export const addTask = newTask => {
 export const editTask = (taskId, updatedTask) => {
   const task = {};
   task[`/${taskId}`] = updatedTask;
-  taskRef.update(updatedTask);
+  taskRef.update(task);
 };
