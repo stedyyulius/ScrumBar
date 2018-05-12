@@ -17,6 +17,7 @@ class Navbar extends Component {
       desc: this.state.desc,
       type: this.state.type,
       status: 'Backlog',
+      created: Date.now(),
     }
     addTask(task)
   }
@@ -27,7 +28,7 @@ class Navbar extends Component {
       <div>
         <ul>
           <li><a href="#" data-toggle="modal" data-target="#createModal">Create Task</a></li>
-          <li className="logo" ><a>ScrumBar</a></li>
+          <li className="logo" ><a>-- BidScrum --</a></li>
         </ul>
         <div className="modal fade" id="createModal" role="dialog">
           <div className="modal-dialog" role="document">
