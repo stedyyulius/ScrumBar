@@ -6,12 +6,12 @@ class Navbar extends Component {
     this.state={}
   }
   render() {
-    return(
+    return (
       <ul>
         <li><a href="#">Create Task</a></li>
-        <li class="logo" ><a>ScrumBar</a></li>
+        <li className="logo" ><a>ScrumBar</a></li>
       </ul>
-    )
+    );
   }
 }
 
