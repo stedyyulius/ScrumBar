@@ -31,20 +31,26 @@ selectTask(key) {
   }
 }
 
-selectMenu(key) {
-  if (this.state.isSelect === key) {
+edit(task, status) {
+  const newTask = task
+  task.status = status
+  editTask(task.key, newTask)
+}
+
+selectMenu(task) {
+  if (this.state.isSelect === task.key) {
     return (
       <div className="select">
-        <div className="select-item">
+        <div className="select-item" onClick={()=> this.edit(task, 'Backlog')}>
           <h4>Backlog</h4>
         </div>
-        <div className="select-item">
+        <div className="select-item" onClick={()=> this.edit(task, 'In Progress')}>
           <h4>In Progress</h4>
         </div>
-        <div className="select-item">
+        <div className="select-item" onClick={()=> this.edit(task, 'Waiting QA')}>
           <h4>Waiting for QA</h4>
         </div>
-        <div className="select-item">
+        <div className="select-item" onClick={()=> this.edit(task, 'done')}>
           <h4>Done</h4>
         </div>
       </div>
@@ -59,21 +65,21 @@ tasksList(section) {
     const filteredTask = [];
 
     this.state.tasks.forEach(task => {
-      if (task.status === section) {
+      if (task.status && task.status.toLowerCase() === section.toLowerCase()) {
         filteredTask.push(
           <div className="card" key={task.key} onClick={()=> this.selectTask(task.key)}>
             <p className="owner">{new Date(task.created).toString().slice(0,15)}</p>
             <h4>{task.title}</h4>
             <p>{task.desc}</p>
             <span className="point">{task.point || 0}</span>
-            {this.selectMenu(task.key)}
+            {this.selectMenu(task)}
           </div>
         )
       }
     });
     return filteredTask;
   }
-  return (<p>Loading ...</p>)
+  return (<img className="loading" src="https://www.pedul.com/images/loading.gif" />)
 }
 
   render() {
@@ -91,15 +97,24 @@ tasksList(section) {
           <div className="title-container">
             <h4>In Progress</h4>
           </div>
+          <div className="section-body">
+            {this.tasksList('In Progress')}
+          </div>
         </div>
         <div className="section">
           <div className="title-container">
-            <h4>On Check</h4>
+            <h4>Waiting QA</h4>
+          </div>
+          <div className="section-body">
+            {this.tasksList('Waiting QA')}
           </div>
         </div>
         <div className="section">
           <div className="title-container">
             <h4>Done</h4>
+          </div>
+          <div className="section-body">
+            {this.tasksList('Done')}
           </div>
         </div>
       </div>

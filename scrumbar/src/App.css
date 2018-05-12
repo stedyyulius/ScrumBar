@@ -30,6 +30,7 @@ li a:hover {
 
 .logo {
   float:right;
+  color: white;
 }
 
 .developers-bar {
@@ -108,7 +109,12 @@ li a:hover {
   margin: auto;
   text-align: center;
   border-left: 15px solid red;
+  margin-bottom: 30px;
 }
+
+/* .card :hover{
+  background-color: blue;
+} */
 
 .select {
   position: relative;
@@ -117,6 +123,7 @@ li a:hover {
   left: 200px;
   top: -90px;
   border: 2px solid #cecacc;
+  z-index: 100;
 }
 
 .select-item {
@@ -125,4 +132,11 @@ li a:hover {
 
 .select-item :hover{
   background-color: blue;
+}
+
+.loading {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  display: block;
 }
