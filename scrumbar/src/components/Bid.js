@@ -67,16 +67,18 @@ class Bid extends Component {
     this.setState({
       lastBid: pastBid
     }, () => {
-      let smallest = pastBid.bids.reduce((prev, curr) => {
-        return Math.min(prev, curr.poin)
-      }, 10000)
-      let smallests = pastBid.bids.filter((bid) => {
+      if (pastBid.bids){
+        let smallest = pastBid.bids.reduce((prev, curr) => {
+          return Math.min(prev, curr.poin)
+        }, 10000)
+        let smallests = pastBid.bids.filter((bid) => {
           return bid.poin == smallest
-      })
-      this.setState({
-        smallests: smallests,
-        bid: {}
-      })
+        })
+        this.setState({
+          smallests: smallests,
+          bid: {}
+        })
+      }
     })
   }
 
@@ -107,7 +109,7 @@ class Bid extends Component {
     if (this.state.bid && Object.keys(this.state.bid).length > 0) {
       return (
         <div className="bids">
-          <p>{this.state.bid.task.title}</p>
+          <h2>{this.state.bid.task.title}</h2>
           {this.state.bid.bids && this.state.bid.bids.map(bid => {
             return (
               <div key={bid.key}>
@@ -145,11 +147,15 @@ class Bid extends Component {
     if (this.state.smallests.length > 0) {
       return (
         <div className="bids">
+          <h1>{this.state.lastBid.task.title}</h1>
+          <hr />
           {this.state.smallests.map(small => {
             return (
-              <h1 key={small.user.key} onClick={() => this.assignTaskTo(small)}>
-                {`${small.user.username}`}
-              </h1>
+              <div key={small.user.key}>
+                <h3 onClick={() => this.assignTaskTo(small)}>
+                  {`${small.user.username}`}
+                </h3>
+              </div>
             )
           })}
           {this.state.smallests.length > 1 ? (
