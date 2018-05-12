@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { getBid, editBid } from '../helpers/bid';
-import { getUser } from '../helpers/user';
-import { getTask, editTask } from '../helpers/task';
+import { editTask } from '../helpers/task';
 
 class Bid extends Component {
   constructor (props) {
@@ -10,49 +9,53 @@ class Bid extends Component {
       user: {
         key: "-LCJ1nhoDIqzOaWaL_dS",
         role:"lead",
+        username: "Tom"
+        // key: "-LCJ1nhoDIqzOaWaL_dR",
+        // role:"programmer",
+        // username: "Ben"
+        // key: "-LCJ1nhoDIqzOaWaL_dQ",
+        // role: "programmer",
+        // username: "Scarlett"
       },
-      users: [],
+      lastBid: {},
       bid: {},
       poin: "",
       latestBidId: "",
       smallests: [],
-      taskId: "",
-      tasks: [],
-      task: {}
     }
   }
 
   componentWillMount () {
     getBid(data => {
       let newBid = data.filter(datum => {
-        return datum.stsrc !== "D";
+        return datum.stsrc === "A";
       })
       this.setState({
         bid: newBid[0],
-        taskId: newBid[0].taskId
       })
     });
-    getUser(data => {
-      console.log("data user = ", data)
-      this.setState({
-        users: data
-      })
-    })
-    getTask(data => {
-      this.setState({
-        tasks: data
-      })
-    })
+    // getUser(data => {
+    //   console.log("data user = ", data)
+    //   this.setState({
+    //     users: data
+    //   })
+    // })
+    // getTask(data => {
+    //   this.setState({
+    //     tasks: data
+    //   })
+    // })
   }
 
   userBid = () => {
     let currBid = this.state.bid
-    console.log("currbid = ", currBid);
-    currBid.bids = [...currBid.bids, {
-      userId: this.state.user.key,
+    currBid.bids = currBid.bids ? [...currBid.bids, {
+      user: this.state.user,
+      poin: this.state.poin
+    }] : [{
+      user: this.state.user,
       poin: this.state.poin
     }]
-    console.log("currupd = ", currBid)
     editBid(currBid.key, currBid)
   }
 
@@ -60,25 +63,27 @@ class Bid extends Component {
     let pastBid = this.state.bid
     pastBid.stsrc = "D"
     editBid(pastBid.key, pastBid)
-    let smallest = pastBid.bids.reduce((prev, curr) => {
-      return Math.min(prev.poin, curr.poin)
-    })
-    console.log("smallest = ", smallest)
-    let smallests = pastBid.bids.filter((bid) => {
-      return bid.poin === smallest
-    })
-    console.log("smallests = ", smallests)
     this.setState({
-      smallests: smallests,
-      bid: {}
+      lastBid: pastBid
+    }, () => {
+      let smallest = pastBid.bids.reduce((prev, curr) => {
+        return Math.min(prev.poin, curr.poin)
+      })
+      let smallests = pastBid.bids.filter((bid) => {
+          return bid.poin == smallest
+      })
+      this.setState({
+        smallests: smallests,
+        bid: {}
+      })
     })
   }
 
   activeBid () {
-    if (Object.keys(this.state.bid).length > 0) {
+    if (this.state.bid && Object.keys(this.state.bid).length > 0) {
       return (
         <div>
-          <p>{this.state.bid.taskName}</p>
+          <p>{this.state.bid.task.title}</p>
           <span><input type="text" className="form-control" onChange={(e) => this.setState({poin: e.target.value})} /></span>
           <button onClick={this.userBid}>BID!</button>
         </div>
@@ -87,27 +92,26 @@ class Bid extends Component {
     return null
   }
 
-  findUser = (key) => {
-    console.log("users = ", this.state.users)
-    return this.state.users.find(user => {
-      return user.key === key
-    })
-  }
+  // findUser = (key) => {
+  //   console.log("users = ", this.state.users)
+  //   return this.state.users.find(user => {
+  //     return user.key === key
+  //   })
+  // }
 
   resultBid = () => {
-    if (Object.keys(this.state.bid).length > 0) {
+    if (this.state.bid && Object.keys(this.state.bid).length > 0) {
       return (
         <div>
-          <p>{this.state.bid.taskName}</p>
-          {this.state.bid.bids.map(bid => {
-            let username = this.findUser(bid.user)
-            console.log("username = ", username)
+          <p>{this.state.bid.task.title}</p>
+          {this.state.bid.bids && this.state.bid.bids.map(bid => {
             return (
               <div key={bid.key}>
-                <p>{`${username} - ${bid.poin}`}</p>
+                <p>{`${bid.user.username} - ${bid.poin}`}</p>
               </div>
             )
           })}
+          <button onClick={this.finishBid}>Finalize Bid</button>
         </div>
       )
     }
@@ -121,22 +125,25 @@ class Bid extends Component {
     })
   }
 
-  assignTaskTo = (userKey) => {
-    let task = this.state.tasks.find(task => {
-      return task.key === this.state.taskId
+  assignTaskTo = (data) => {
+    let task = this.state.lastBid.task
+    task.userAssigned = data.user.key
+    task.poin = data.poin
+    editTask(task.key, task)
+    this.setState({
+      lastBid: {},
+      smallests: []
     })
-    task.userAssigned = userKey
-    editTask(this.state.taskId, task)
   }
 
   assignBid () {
     if (this.state.smallests.length > 0) {
       return (
         <div>
-          {this.state.smallests.map(user => {
+          {this.state.smallests.map(small => {
             return (
-              <p key={user} onClick={() => this.assignTaskTo(user.user)}>
-                {`${this.findUser(user.user)}`}
+              <p key={small.user.key} onClick={() => this.assignTaskTo(small)}>
+                {`${small.user.username}`}
               </p>
             )
           })}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { getTask, addTask, editTask } from '../helpers/task';
+import { getTask, editTask } from '../helpers/task';
+import { addBid } from '../helpers/bid';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -59,6 +60,15 @@ class Dashboard extends Component {
     }
   }
 
+  startBid = (task) => {
+    let newBid = {
+      task: task,
+      stsrc: "A",
+      bids: []
+    }
+    addBid(newBid)
+  }
+
   tasksList(section) {
     if (this.state.tasks.length > 0) {
       // console.log(this.state.tasks[0].status)
@@ -74,7 +84,7 @@ class Dashboard extends Component {
               <p>{task.desc}</p>
               <span className="point">
               {task.point || this.state.user.role === "lead"
-                ? <button className="bid-button">Start Bid</button>
+                  ? <button className="bid-button" onClick={() => this.startBid(task)}>Start Bid</button>
                 : ""}
               </span>
               {this.selectMenu(task)}
