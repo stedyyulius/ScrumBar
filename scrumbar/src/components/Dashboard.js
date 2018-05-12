@@ -9,7 +9,7 @@ class Dashboard extends Component {
       tasks: [],
       isSelect: '',
       user: {
-        role: "lead",
+        role: "programmer",
         id: "1234"
       },
     }

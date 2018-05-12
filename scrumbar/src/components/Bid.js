@@ -7,15 +7,15 @@ class Bid extends Component {
     super(props)
     this.state = {
       user: {
-        key: "-LCJ1nhoDIqzOaWaL_dS",
-        role:"lead",
-        username: "Tom"
+        // key: "-LCJ1nhoDIqzOaWaL_dS",
+        // role:"lead",
+        // username: "Tom"
         // key: "-LCJ1nhoDIqzOaWaL_dR",
         // role:"programmer",
         // username: "Ben"
-        // key: "-LCJ1nhoDIqzOaWaL_dQ",
-        // role: "programmer",
-        // username: "Scarlett"
+        key: "-LCJ1nhoDIqzOaWaL_dQ",
+        role: "programmer",
+        username: "Scarlett"
       },
       lastBid: {},
       bid: {},
