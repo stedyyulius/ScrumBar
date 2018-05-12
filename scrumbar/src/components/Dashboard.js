@@ -72,7 +72,11 @@ class Dashboard extends Component {
               <p className="owner">{new Date(task.created).toString().slice(0,15)}</p>
               <h4>{task.title}</h4>
               <p>{task.desc}</p>
-              <span className="point">{task.point || this.state.user.role === "lead" ? <button>Start Bid</button> : ""}</span>
+              <span className="point">
+              {task.point || this.state.user.role === "lead"
+                ? <button className="bid-button">Start Bid</button>
+                : ""}
+              </span>
               {this.selectMenu(task)}
             </div>
           )
