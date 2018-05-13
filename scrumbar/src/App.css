@@ -31,6 +31,7 @@ li a:hover {
 .logo {
   float:right;
   color: white;
+  padding: 12px;
 }
 
 .developers-bar {
@@ -179,4 +180,11 @@ li a:hover {
 .bid-input {
   width: 20%;
   margin: auto;
+}
+
+.title {
+  text-align: center;
+  color: white;
+  position: absolute;
+  left: 45%;
 }

@@ -47,7 +47,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleChangeUser}>Change User</button>
         <Navbar username={this.state.user.username}/>
         <Bid user={this.state.user}/>
         <Developers user={this.state.user}/>
