@@ -8,15 +8,15 @@ class Bid extends Component {
     this.state = {
       user: props.user,
       // user: {
-      //   // key: "-LCJ1nhoDIqzOaWaL_dS",
-      //   // role:"lead",
-      //   // username: "Tom"
-      //   // key: "-LCJ1nhoDIqzOaWaL_dR",
-      //   // role:"programmer",
-      //   // username: "Ben"
-      //   key: "-LCJ1nhoDIqzOaWaL_dQ",
-      //   role: "programmer",
-      //   username: "Scarlett"
+        // key: "-LCJ1nhoDIqzOaWaL_dS",
+        // role:"lead",
+        // username: "Tom"
+        // key: "-LCJ1nhoDIqzOaWaL_dR",
+        // role:"programmer",
+        // username: "Ben"
+        // key: "-LCJ1nhoDIqzOaWaL_dQ",
+        // role: "programmer",
+        // username: "Scarlett"
       // },
       lastBid: {},
       bid: {},
@@ -55,10 +55,10 @@ class Bid extends Component {
   userBid = () => {
     let currBid = this.state.bid
     currBid.bids = currBid.bids ? [...currBid.bids, {
-      user: this.state.user,
+      user: this.props.user,
       poin: this.state.poin
     }] : [{
-      user: this.state.user,
+      user: this.props.user,
       poin: this.state.poin
     }]
     editBid(currBid.key, currBid)
@@ -173,14 +173,16 @@ class Bid extends Component {
   }
 
   render() {
-    if (this.state.user.role === "lead") {
+    console.log(this.props.user);
+
+    if (this.props.user.role === "lead") {
       return (
         <div>
           {this.resultBid()}
           {this.assignBid()}
         </div>
       )
-    } else if (this.state.user.role === "programmer") {
+    } else if (this.props.user.role === "programmer") {
       return (this.activeBid())
     }
   }
