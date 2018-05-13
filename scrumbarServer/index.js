@@ -83,16 +83,16 @@ async function createData() {
             <br/>
                 <h2 class="titleDiv title is-2">User Poin</h2>
                 ${table}
-            <div class="chart-container" style="position: absolute; top: 60vh; left: 20vh; height:30vh; width:50vw; z-index:99">
+            <div class="chart-container" style="height:30vh; width:50vw; z-index:99">
               <canvas id="myChart"></canvas>
             </div>
-            <div class="chart-container" style="position: absolute; top: 60vh; left: 20vh; height:30vh; width:50vw">
+            <div class="chart-container" style="position: absolute; top: 40vh; left: 20vh; height:30vh; width:50vw">
               <canvas id="myChart2"></canvas>
             </div>
             <script>
               var ctx = document.getElementById("myChart").getContext('2d');
               var myChart = new Chart(ctx, {
-                  type: 'line',
+                  type: 'bar',
                   data: {
                       labels: [${userLabel}],
                       datasets: [{
@@ -121,7 +121,7 @@ async function createData() {
                       scales: {
                           yAxes: [{
                               ticks: {
-                                  beginAtZero:true
+                                  beginAtZero: false
                               }
                           }]
                       }
