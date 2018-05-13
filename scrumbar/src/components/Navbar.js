@@ -33,6 +33,7 @@ class Navbar extends Component {
         <ul>
           <li><a href="#" data-toggle="modal" data-target="#createModal">Create Task</a></li>
           <li><a href="http://localhost:3001/rpt" download={report} target="_blank">Generate Report</a></li>
+          <li className="logo" id="username">{this.props.username}</li>
           <li className="logo" ><a>-- BidScrum --</a></li>
         </ul>
         <div className="modal fade" id="createModal" role="dialog">

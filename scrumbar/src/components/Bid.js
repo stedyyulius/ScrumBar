@@ -6,17 +6,18 @@ class Bid extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      user: {
-        // key: "-LCJ1nhoDIqzOaWaL_dS",
-        // role:"lead",
-        // username: "Tom"
-        // key: "-LCJ1nhoDIqzOaWaL_dR",
-        // role:"programmer",
-        // username: "Ben"
-        key: "-LCJ1nhoDIqzOaWaL_dQ",
-        role: "programmer",
-        username: "Scarlett"
-      },
+      user: props.user,
+      // user: {
+      //   // key: "-LCJ1nhoDIqzOaWaL_dS",
+      //   // role:"lead",
+      //   // username: "Tom"
+      //   // key: "-LCJ1nhoDIqzOaWaL_dR",
+      //   // role:"programmer",
+      //   // username: "Ben"
+      //   key: "-LCJ1nhoDIqzOaWaL_dQ",
+      //   role: "programmer",
+      //   username: "Scarlett"
+      // },
       lastBid: {},
       bid: {},
       poin: "",
@@ -25,6 +26,10 @@ class Bid extends Component {
     }
   }
 
+
+  componentDidMount() {
+    document.getElementById('username').innerHTML = this.state.user.username;
+  }
   componentWillMount () {
     getBid(data => {
       let newBid = data.filter(datum => {

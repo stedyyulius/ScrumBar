@@ -5,13 +5,9 @@ import { addBid } from '../helpers/bid';
 class Dashboard extends Component {
   constructor(props) {
     super(props)
-    this.state={
+    this.state= {
       tasks: [],
-      isSelect: '',
-      user: {
-        role: "programmer",
-        id: "1234"
-      },
+      isSelect: ''
     }
   }
 
@@ -82,7 +78,7 @@ class Dashboard extends Component {
               <p className="owner">{new Date(task.created).toString().slice(0,15)}</p>
               <h4>{task.title}</h4>
               <span className="point">
-              {task.poin ? task.poin : this.state.user.role === "lead"
+              {task.poin ? task.poin : this.props.user.role === "lead"
                   ? <button className="bid-button" onClick={() => this.startBid(task)}>Start Bid</button>
                 : task.poin}
               </span>
