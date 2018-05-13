@@ -1,72 +1,71 @@
 import React from 'react';
-import { getBid, addBid, editBid } from '../helpers/bid';
-
+import { getUser, addUser, editUser } from '../helpers/user';
 
 class CobaFirebase extends React.Component {
   state = {
-    bids: []
+    users: []
   }
   handleAdd = () => {
-    const bids = [
+    const users = [
       {
-        taskId: '-LCISqJ-rDlkyR1uU5-d',
-        taskName: 'login feature',
-        bids: [],
-        done: false
+        username: 'Chris',
+        password: 'password',
+        role: 'programmer',
+        photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Chris_Hemsworth_by_Gage_Skidmore.jpg/1200px-Chris_Hemsworth_by_Gage_Skidmore.jpg'
       },
       {
-        taskId: '-LCISqJ4sN892GnCRhXc',
-        taskName: 'search feature',
-        bids: [],
-        done: false
+        username: 'Evan',
+        password: 'password',
+        role: 'programmer',
+        photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/5_Dec._2016_CJCS_USO_Holiday_Tour_-_Incirlik_Air_Base_161205-D-PB383-044_%2831430825446%29_%28cropped%29_%28cropped%29.jpg/220px-5_Dec._2016_CJCS_USO_Holiday_Tour_-_Incirlik_Air_Base_161205-D-PB383-044_%2831430825446%29_%28cropped%29_%28cropped%29.jpg'
       }
   ];
-    bids.forEach(bid => {
-      addBid(bid);
+    users.forEach(user => {
+      addUser(user);
     });
   }
 
   componentDidMount = () => {
-    getBid( data => {
-      const datas = Object.entries(data.val()).map(([key, value]) => {
-        return {...value, key};
-      });
+    // getUser( data => {
+    //   const datas = Object.entries(data.val()).map(([key, value]) => {
+    //     return {...value, key};
+    //   });
 
-      this.setState({bids: datas});
-    });
+    //   this.setState({users: datas});
+    // });
   }
 
-  // bid finish
+  // user finish
   handleDelete = key => {
-    let deletedBid = this.state.bids.find(bid => bid.key === key);
-    deletedBid = {
-      ...deletedBid,
+    let deletedUser = this.state.users.find(user => user.key === key);
+    deletedUser = {
+      ...deletedUser,
       stsrc: 'D'
     }
-    editBid(key, deletedBid);
+    editUser(key, deletedUser);
   }
 
-  // add array of user yg ngebid
-  handleBid = (bidId, userId) => {
-    let currBid = this.state.bids.find(bid => bid.key === bidId);
-    const bids = currBid.bids || [];
-    bids.push({userId, poin: 1});
+  // // add array of user yg ngeuser
+  // handleUser = (userId, userId) => {
+  //   let currUser = this.state.users.find(user => user.key === userId);
+  //   const users = currUser.users || [];
+  //   users.push({userId, poin: 1});
 
-    currBid.bids = bids;
+  //   currUser.users = users;
 
-    editBid(bidId, currBid);
+  //   editUser(userId, currUser);
 
-  }
+  // }
 
   render() {
     return (
       <div>
         {
-          this.state.bids.map(bid => (
-            <div key={bid.key}>
-              {bid.taskName}
-              <button onClick={() => this.handleDelete(bid.key)}>Finish</button>
-              <button onClick={() => this.handleBid(bid.key, '-LCJ1nhgKWA-1SPL1FIq')}>BID</button>
+          this.state.users.map(user => (
+            <div key={user.key}>
+              {user.taskName}
+              <button onClick={() => this.handleDelete(user.key)}>Finish</button>
+              <button onClick={() => this.handleUser(user.key, '-LCJ1nhgKWA-1SPL1FIq')}>BID</button>
             </div>
           ))
         }

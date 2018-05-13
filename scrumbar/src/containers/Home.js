@@ -25,6 +25,18 @@ const userList= [
     role:"programmer",
     username: "Ben",
     id: "1234"
+  },
+  {
+    key: "-LCMIWX6gqpSYtE4_Lei",
+    role:"programmer",
+    username: "Evan",
+    id: "1234"
+  },
+  {
+    key: "-LCMIWX1_7j7m8ugh4ab",
+    role:"programmer",
+    username: "Chris",
+    id: "1234"
   }
 ];
 
@@ -39,7 +51,7 @@ class Home extends Component {
   handleChangeUser = () => {
     const idx = Math.floor(Math.random() * userList.length);
     this.setState({user: userList[idx]}, () => {
-      // document.getElementById('username').innerHTML = this.state.user.username;
+      document.getElementById('username').innerHTML = this.state.user.username;
     });
     // const username = document.getElementById('username').innerHTML(this.state.user.username);
   }
@@ -47,7 +59,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Navbar username={this.state.user.username}/>
+        <Navbar username={this.state.user.username} handleChangeUser={this.handleChangeUser}/>
         <Bid user={this.state.user}/>
         <Developers user={this.state.user}/>
         <Dashboard user={this.state.user}/>
