@@ -26,16 +26,20 @@ async function createData() {
 
   try {
     let allTasks = Object.values(tasks.val());
-    let userContribs = Object.entries(users.val()).map(([key, user]) => {
-      userLabel.push(`"${user.username}"`);
-      let poin = allTasks.reduce((poins, task) => {
-        if (typeof task.userAssigned !== 'undefined' && task.userAssigned === key && typeof task.poin !== 'undefined' && task.status === 'done') poins += parseInt(task.poin);
-        else poins += 0;
-        return poins;
-      }, 0);
-      poinLabel.push(poin);
-      return `<tr><td>${user.username}</td><td>${poin}</td></tr>`;
-    }).join('');
+    let userContribs = Object.entries(users.val())
+      .filter(([, user])=> user.role === 'programmer')
+      .map(([key, user]) => {
+        userLabel.push(`"${user.username}"`);
+        let poin = allTasks.reduce((poins, task) => {
+          if (typeof task.userAssigned !== 'undefined' && task.userAssigned === key && typeof task.poin !== 'undefined' && task.status === 'done') poins += parseInt(task.poin);
+          else poins += 0;
+          return poins;
+        }, 0);
+        poinLabel.push(poin);
+        return `<tr><td>${user.username}</td><td>${poin}</td></tr>`;
+      }).join('');
+
+
     const table = `
     <div class="container">
       <div class="notification">
@@ -79,13 +83,16 @@ async function createData() {
             <br/>
                 <h2 class="titleDiv title is-2">User Poin</h2>
                 ${table}
-            <div class="chart-container" style="position: relative; height:30vh; width:50vw">
+            <div class="chart-container" style="position: absolute; top: 60vh; left: 20vh; height:30vh; width:50vw; z-index:99">
               <canvas id="myChart"></canvas>
-          </div>
+            </div>
+            <div class="chart-container" style="position: absolute; top: 60vh; left: 20vh; height:30vh; width:50vw">
+              <canvas id="myChart2"></canvas>
+            </div>
             <script>
               var ctx = document.getElementById("myChart").getContext('2d');
               var myChart = new Chart(ctx, {
-                  type: 'bar',
+                  type: 'line',
                   data: {
                       labels: [${userLabel}],
                       datasets: [{
